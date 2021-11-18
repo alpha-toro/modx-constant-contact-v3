@@ -24,3 +24,8 @@
 5. copy the refresh token from the page and paste into System Settings
 
 All set. Test the form. 
+
+## Form Creation
+
+1. add your form fields to the Snippet
+2. Get the List ID from the URL `https://app.constantcontact.com/pages/contacts/ui#contacts/0ce51e9e-47ee-XXXXX-XXXXXXX`
