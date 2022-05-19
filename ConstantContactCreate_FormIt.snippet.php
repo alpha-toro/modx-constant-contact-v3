@@ -46,7 +46,7 @@ $refreshToken = $setting->get('value');
 $ch = curl_init();
 
 // Define base URL
-$base = 'https://idfed.constantcontact.com/as/token.oauth2';
+$base = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 
 // Create full request URL
 $url = $base . '?refresh_token=' . $refreshToken . '&grant_type=refresh_token';
@@ -59,7 +59,7 @@ $auth = $clientId . ':' . $clientSecret;
 $credentials = base64_encode($auth);
 // Create and set the Authorization header to use the encoded credentials
 $authorization = 'Authorization: Basic ' . $credentials;
-curl_setopt($ch, CURLOPT_HTTPHEADER, array($authorization));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array($authorization, 'Content-Type: application/x-www-form-urlencoded'));
 
 // Set method and to expect response
 curl_setopt($ch, CURLOPT_POST, true);
@@ -67,6 +67,13 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Make the call
 $result = curl_exec($ch);
+$error = curl_error($ch);
+
+if($error){
+    $hook->addError('error_message',serialize($error)); 
+    $modx->log(modX::LOG_LEVEL_ERROR,'Refresh CC Curl error: '.serialize($error));
+    return false;
+}
 
 $getToken = $result;
 
@@ -132,4 +139,8 @@ if($obj->refresh_token){
     }
     
     curl_close($ch);
+} else {
+    $modx->log(modX::LOG_LEVEL_ERROR,'CC Refresh Token Missing: '.serialize($obj));
+    $hook->addError('error_message',serialize($obj)); 
+    return false;
 }
