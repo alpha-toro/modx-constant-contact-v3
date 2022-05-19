@@ -18,7 +18,7 @@
 2. Have *System Settings* page loaded and ready to paste Step 3 code
 3. Client or someone with login creds needs to hit this URL and copy the code returned in the URL
 
-`https://api.cc.email/v3/idfed?response_type=code&client_id=9f36069e-182c-484e-8c2c-15e329de85b7&scope=contact_data+campaign_data&redirect_uri=https%3A%2F%2Frocketcitydigital.com%2Fcc-auth`
+`https://authz.constantcontact.com/oauth2/default/v1/authorize?client_id=9f36069e-182c-484e-8c2c-15e329de85b7&redirect_uri=https%3A%2F%2Frocketcitydigital.com%2Fcc-auth&response_type=code&scope=contact_data+campaign_data+offline_access&state=235o250eddsdff`
 
 4. You have 60 seconds to paste the *Auth Code* into System Settings and run the page from step 1
 5. copy the refresh token from the page and paste into System Settings
