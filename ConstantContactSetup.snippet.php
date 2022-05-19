@@ -31,7 +31,7 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code) {
     $ch = curl_init();
 
     // Define base URL
-    $base = 'https://idfed.constantcontact.com/as/token.oauth2';
+    $base = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 
     // Create full request URL
     $url = $base . '?code=' . $code . '&redirect_uri=' . $redirectURI . '&grant_type=authorization_code&scope=contact_data';
@@ -44,7 +44,7 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code) {
     $credentials = base64_encode($auth);
     // Create and set the Authorization header to use the encoded credentials
     $authorization = 'Authorization: Basic ' . $credentials;
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array($authorization));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array($authorization, 'Content-Type: application/x-www-form-urlencoded'));
 
     // Set method and to expect response
     curl_setopt($ch, CURLOPT_POST, true);
