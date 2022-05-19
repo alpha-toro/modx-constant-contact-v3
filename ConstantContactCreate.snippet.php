@@ -12,7 +12,7 @@
  * @return string - JSON String of results
  */
  
-//MANUAL TEST SNIPPET
+//DONT FORGET TO CREATE THE SYSTEM SETTING MANUALLY 
 
 $membership_lists = ['0ce51e9e-47ee-11ec-add5-fa163e6a92d8'];
 
@@ -38,7 +38,7 @@ function refreshToken($refreshToken, $clientId, $clientSecret) {
     $ch = curl_init();
 
     // Define base URL
-    $base = 'https://idfed.constantcontact.com/as/token.oauth2';
+    $base = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 
     // Create full request URL
     $url = $base . '?refresh_token=' . $refreshToken . '&grant_type=refresh_token';
